@@ -9,14 +9,7 @@ import LoginForm from './components/LoginForm';
 class App extends Component {
   componentWillMount() {
     const firebaseConfig = {
-      apiKey: 'AIzaSyDuKHanEtKBVYKMedho6vYN0mtqO8j5_e8',
-      authDomain: 'manager-fd534.firebaseapp.com',
-      databaseURL: 'https://manager-fd534.firebaseio.com',
-      projectId: 'manager-fd534',
-      storageBucket: 'manager-fd534.appspot.com',
-      messagingSenderId: '1086471820239',
-      appId: '1:1086471820239:web:a4af1dca364f5553e838ba',
-      measurementId: 'G-D13TWC2RBT',
+      // firebase config
     };
     firebase.initializeApp(firebaseConfig);
   }
