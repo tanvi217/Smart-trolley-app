@@ -1,9 +1,11 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {loggedOut} from '../actions';
+import {FlatList, View} from 'react-native';
 import {purchasesFetch} from '../actions';
 import {connect} from 'react-redux';
 import ListItem from './ListItem';
+import {CardSection, Button} from './common';
 
 class PurchasesList extends Component {
   componentWillMount() {
@@ -20,13 +22,22 @@ class PurchasesList extends Component {
     this.dataSource = purchases;
   }
 
+  onButtonPress() {
+    this.props.loggedOut();
+  }
+
   render() {
-    console.log('purchases ', this.dataSource);
+    // console.log('purchases ', this.dataSource);
     return (
-      <FlatList
-        data={this.dataSource}
-        renderItem={({item}) => <ListItem purchase={item} />}
-      />
+      <View>
+        <FlatList
+          data={this.dataSource}
+          renderItem={({item}) => <ListItem purchase={item} />}
+        />
+        <CardSection>
+          <Button onPress={this.onButtonPress.bind(this)}>Logout</Button>
+        </CardSection>
+      </View>
     );
   }
 }
@@ -35,8 +46,10 @@ const mapStateToProps = (state) => {
   const purchases = _.map(state.purchases, (val, uid) => {
     return {...val, uid};
   });
-  console.log('data ', state);
+  // console.log('data ', state);
   return {purchases};
 };
 
-export default connect(mapStateToProps, {purchasesFetch})(PurchasesList);
+export default connect(mapStateToProps, {purchasesFetch, loggedOut})(
+  PurchasesList,
+);

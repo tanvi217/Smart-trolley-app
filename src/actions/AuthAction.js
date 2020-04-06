@@ -6,6 +6,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
+  LOGOUT,
 } from './types';
 
 export const emailChanged = (text) => {
@@ -19,6 +20,18 @@ export const passwordChanged = (text) => {
   return {
     type: PASSWORD_CHANGED,
     payload: text,
+  };
+};
+
+export const loggedOut = () => {
+  return (dispatch) => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        Actions.auth();
+        dispatch({type: LOGOUT});
+      });
   };
 };
 

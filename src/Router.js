@@ -19,10 +19,6 @@ const RouterComponent = () => {
         </Scene>
         <Scene key="main">
           <Scene
-            rightTitle="Add"
-            onRight={() => {
-              Actions.purchaseCreate();
-            }}
             key="purchasesList"
             component={PurchasesList}
             title="Purchases"
@@ -40,5 +36,4 @@ const RouterComponent = () => {
 };
 
 export default RouterComponent;
-
 //cd Desktop\Noway\"Semester 6"\IOT\manager
