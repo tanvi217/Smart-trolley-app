@@ -15,6 +15,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
     case EMAIL_CHANGED:
       return {...state, email: action.payload};
@@ -26,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, loading: true, error: ''};
 
     case LOGIN_USER_SUCCESS:
-      return {...state, ...INITIAL_STATE, user: action.payload};
+      return {...state, error: null, user: action.payload, loading: false};
 
     case LOGIN_USER_FAIL:
       return {...state, error: 'Authentication Failed', loading: false};
