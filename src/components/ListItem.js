@@ -5,17 +5,19 @@ import {Actions} from 'react-native-router-flux';
 
 class ListItem extends Component {
   onRowPress() {
-    Actions.purchaseEdit({purchase: this.props.purchase});
+    console.log('ind item', this.props.purchase);
+    Actions.purchaseDetail({purchase: this.props.purchase});
   }
 
   render() {
-    const {name} = this.props.purchase;
+    const {uid} = this.props.purchase;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
           <CardSection>
-            <Text style={styles.titleStyle}>{name}</Text>
+            <Text style={styles.titleStyle}>Purchase Date: </Text>
+            <Text style={styles.titleStyle}>{uid}</Text>
           </CardSection>
         </View>
       </TouchableWithoutFeedback>

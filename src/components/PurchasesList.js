@@ -27,7 +27,7 @@ class PurchasesList extends Component {
   }
 
   render() {
-    // console.log('purchases ', this.dataSource);
+    // console.log('purchases_ds ', this.dataSource);
     return (
       <View>
         <FlatList
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => {
   const purchases = _.map(state.purchases, (val, uid) => {
     return {...val, uid};
   });
-  // console.log('data ', state);
+  // console.log('data_state ', state);
   return {purchases};
 };
 
