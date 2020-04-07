@@ -37,6 +37,7 @@ export const loggedOut = () => {
 
 export const loginUser = ({email, password}) => {
   return (dispatch) => {
+    // dispatch({type: LOGIN_USER});
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -45,11 +46,9 @@ export const loginUser = ({email, password}) => {
         firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
-          .then((user) => loginUserSuccess(dispatch, user))
+          .then((user) => loginUserSignUpSuccess(dispatch, user))
           .catch(() => loginUserFail(dispatch));
       });
-
-    // dispatch({type: LOGIN_USER});
   };
 };
 
@@ -57,8 +56,25 @@ const loginUserFail = (dispatch) => {
   dispatch({type: LOGIN_USER_FAIL});
 };
 
+const loginUserSignUpSuccess = (dispatch, user) => {
+  firebase
+    .database()
+    .ref('users/' + user.uid)
+    .set(purchases, function (error) {
+      if (error) {
+        console.log('error');
+      } else {
+        console.log(' Data saved successfully!');
+      }
+    });
+  dispatch({
+    type: LOGIN_USER_SUCCESS,
+    payload: user,
+  });
+  Actions.main();
+};
+
 const loginUserSuccess = (dispatch, user) => {
-  console.log('in success');
   dispatch({
     type: LOGIN_USER_SUCCESS,
     payload: user,

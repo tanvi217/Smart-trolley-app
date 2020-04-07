@@ -6,12 +6,16 @@ import {purchasesFetch} from '../actions';
 import {connect} from 'react-redux';
 import ListItem from './ListItem';
 import {CardSection, Button} from './common';
+import firebase from 'firebase';
+import {Actions} from 'react-native-router-flux';
 
 class PurchasesList extends Component {
   componentWillMount() {
     this.props.purchasesFetch();
 
     this.createDataSource(this.props);
+    const {currentUser} = firebase.auth();
+    this.currentUser = currentUser;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,8 +30,12 @@ class PurchasesList extends Component {
     this.props.loggedOut();
   }
 
+  onButtonPressPred() {
+    Actions.purchasePred();
+  }
+
   render() {
-    // console.log('purchases_ds ', this.dataSource);
+    console.log('purchases_ds ', this.currentUser.uid);
     return (
       <View>
         <FlatList
@@ -37,6 +45,13 @@ class PurchasesList extends Component {
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>Logout</Button>
         </CardSection>
+        {this.currentUser.uid === 'WqcFBidhthQdWTSXzMVVyEVPu6D2' && (
+          <CardSection>
+            <Button onPress={this.onButtonPressPred.bind(this)}>
+              PREDICTIONS
+            </Button>
+          </CardSection>
+        )}
       </View>
     );
   }

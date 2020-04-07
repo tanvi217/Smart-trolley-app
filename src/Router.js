@@ -3,8 +3,8 @@ import {Scene, Router, Actions} from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import PurchasesList from './components/PurchasesList';
 import PurchaseCreate from './components/PurchaseCreate';
-// import PurchaseEdit from './components/PurchaseEdit';
 import PurchaseDetail from './components/PurchaseDetail';
+import PurchasePred from './components/PurchasePred';
 
 const RouterComponent = () => {
   return (
@@ -33,6 +33,11 @@ const RouterComponent = () => {
             key="purchaseDetail"
             title="Details"
             component={PurchaseDetail}
+          />
+          <Scene
+            key="purchasePred"
+            component={PurchasePred}
+            title="Purchase Predictions"
           />
         </Scene>
       </Scene>
