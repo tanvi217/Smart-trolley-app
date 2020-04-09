@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {connect} from 'react-redux';
 import {emailChanged, passwordChanged, loginUser} from '../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
+import img from '../../static/logo.jpg';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -38,6 +39,13 @@ class LoginForm extends Component {
   render() {
     return (
       <Card>
+        <Image source={img} style={styles.center} />
+        <CardSection>
+          <Text style={styles.labelStyle}>
+            You are just a few steps to receiving world class service from your
+            supplier
+          </Text>
+        </CardSection>
         <CardSection>
           <Input
             label="Email"
@@ -70,6 +78,16 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red',
+  },
+  labelStyle: {
+    fontSize: 20,
+    paddingLeft: 20,
+    fontWeight: 'bold',
+  },
+  center: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    // width: '50%',
   },
 };
 

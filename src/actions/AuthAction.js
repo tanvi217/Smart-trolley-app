@@ -43,11 +43,12 @@ export const loginUser = ({email, password}) => {
       .signInWithEmailAndPassword(email, password)
       .then((user) => loginUserSuccess(dispatch, user))
       .catch(() => {
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password)
-          .then((user) => loginUserSignUpSuccess(dispatch, user))
-          .catch(() => loginUserFail(dispatch));
+        loginUserFail(dispatch);
+        // firebase
+        //   .auth()
+        //   .createUserWithEmailAndPassword(email, password)
+        //   .then((user) => loginUserSignUpSuccess(dispatch, user))
+        //   .catch(() => loginUserFail(dispatch));
       });
   };
 };

@@ -6,6 +6,8 @@ import {Dimensions} from 'react-native';
 import firebase from 'firebase';
 import ListItemPred from './ListItemPred';
 
+const screenWidth = Dimensions.get('window').width;
+
 class PurchasePred extends Component {
   state = {
     sales_months: [],
@@ -35,38 +37,43 @@ class PurchasePred extends Component {
     if (this.sales_months) {
       for (var i = 0; i < this.sales_months.length; i++) {
         months.push(this.sales_months[i].month);
-        sales.push(this.sales_months[i].sales);
+        sales.push(Math.floor(this.sales_months[i].sales));
       }
     }
-    console.log(months, sales);
+    console.log('sales', months, sales);
+
+    const data = {
+      labels: months,
+      datasets: [
+        {
+          data: sales,
+          // color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
+          strokeWidth: 2, // optional
+        },
+      ],
+    };
 
     return (
       <View>
         <CardSection>
           <Text style={{fontSize: 20}}>SALES</Text>
+          <Text>{`\n\nPast year sales(Month vs Sales)`}</Text>
         </CardSection>
         <LineChart
-          data={{
-            labels: months,
-            datasets: [
-              {
-                data: sales,
-                strokeWidth: 2,
-              },
-            ],
-          }}
-          width={Dimensions.get('window').width - 16}
+          data={data}
+          width={Dimensions.get('window').width} // from react-native
           height={220}
           chartConfig={{
-            backgroundColor: '#1cc910',
-            backgroundGradientFrom: '#eff3ff',
-            backgroundGradientTo: '#efefef',
-            decimalPlaces: 2,
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            backgroundColor: '#e26a00',
+            backgroundGradientFrom: '#fb8c00',
+            backgroundGradientTo: '#ffa726',
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16,
             },
           }}
+          bezier
           style={{
             marginVertical: 8,
             borderRadius: 16,
