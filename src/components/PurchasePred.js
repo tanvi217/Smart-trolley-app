@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, FlatList} from 'react-native';
 import {CardSection} from './common/CardSection';
-import {LineChart} from 'react-native-chart-kit';
+import {LineChart, BarChart} from 'react-native-chart-kit';
 import {Dimensions} from 'react-native';
 import firebase from 'firebase';
 import ListItemPred from './ListItemPred';
@@ -26,7 +26,6 @@ class PurchasePred extends Component {
       .database()
       .ref(`/users/${currentUser.uid}/Predictions`)
       .on('value', (snapshot) => {
-        console.log(snapshot.val());
         this.predictions = Object.values(snapshot.val());
       });
   }
@@ -35,9 +34,9 @@ class PurchasePred extends Component {
     const months = [];
     const sales = [];
     if (this.sales_months) {
-      for (var i = 0; i < this.sales_months.length; i++) {
-        months.push(this.sales_months[i].month);
-        sales.push(Math.floor(this.sales_months[i].sales));
+      for (var i = 0; i < 12; i++) {
+        months.push(this.sales_months[i].Month);
+        sales.push(this.sales_months[i].Sales);
       }
     }
     console.log('sales', months, sales);
@@ -47,7 +46,6 @@ class PurchasePred extends Component {
       datasets: [
         {
           data: sales,
-          // color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
           strokeWidth: 2, // optional
         },
       ],
@@ -61,19 +59,17 @@ class PurchasePred extends Component {
         </CardSection>
         <LineChart
           data={data}
-          width={Dimensions.get('window').width} // from react-native
+          width={screenWidth} // from react-native
           height={220}
           chartConfig={{
             backgroundColor: '#e26a00',
             backgroundGradientFrom: '#fb8c00',
             backgroundGradientTo: '#ffa726',
-            decimalPlaces: 2, // optional, defaults to 2dp
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16,
             },
           }}
-          bezier
           style={{
             marginVertical: 8,
             borderRadius: 16,
