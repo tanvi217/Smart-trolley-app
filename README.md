@@ -3,7 +3,7 @@ Self-checkout mobile application to facilitate shoppers to scan and pay for thei
 
 # Instructions to start the app
 git clone https://github.com/tanvi217/Smart-trolley-app.git
-cd Smart-trolley-app
-npm install
-react-native run-android
-react-native start
+<br/>cd Smart-trolley-app
+<br/>npm install
+<br/>react-native run-android
+<br/>react-native start
