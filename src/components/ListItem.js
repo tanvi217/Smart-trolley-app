@@ -5,7 +5,7 @@ import {Actions} from 'react-native-router-flux';
 
 class ListItem extends Component {
   onRowPress() {
-    console.log('ind item', this.props.purchase);
+    // console.log('ind item', this.props.purchase);
     Actions.purchaseDetail({purchase: this.props.purchase});
   }
 

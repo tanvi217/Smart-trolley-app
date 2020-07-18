@@ -1,17 +1,65 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
-import {CardSection} from './common/CardSection';
+import {Text, View, Alert} from 'react-native';
+import {Actions} from 'react-native-router-flux';
+import firebase from 'firebase';
+import {connect} from 'react-redux';
 
+import {deleteItem} from '../actions';
+import {CardSection, Button} from './common';
 class ListItemDatewise extends Component {
+  deleteItem() {
+    deleteItem(
+      this.props.purchase.dateOfPurchase,
+      this.props.purchase.key,
+      this.props.purchase.totalweight - this.props.purchase.weight,
+      this.props.purchase.totalprice - this.props.purchase.price,
+    );
+  }
+
+  openTwoButtonAlert = () => {
+    console.log(this.props);
+    Alert.alert(
+      'Delete Item',
+      'Are you sure?',
+      [
+        {text: 'Yes', onPress: () => this.deleteItem()},
+        {
+          text: 'No',
+          onPress: () => console.log('No item was removed'),
+          style: 'cancel',
+        },
+      ],
+      {
+        cancelable: true,
+      },
+    );
+  };
+
   render() {
-    const {name, price, expdate, mfdate, weight} = this.props.purchase;
+    const {
+      name,
+      price,
+      expdate,
+      mfdate,
+      weight,
+      isConfirmed,
+    } = this.props.purchase;
 
     return (
-      <CardSection>
-        <Text style={styles.labelStyle}>
-          {`Item name: ${name}\nItem Price: ${price}\nItem weight: ${weight}\nManufacturing Date: ${mfdate}\nExpiry Date: ${expdate}`}
-        </Text>
-      </CardSection>
+      <View>
+        <CardSection>
+          <Text style={styles.labelStyle}>
+            {`Item name: ${name}\nItem Price: ${price}\nItem weight: ${weight}\nManufacturing Date: ${mfdate}\nExpiry Date: ${expdate}`}
+          </Text>
+        </CardSection>
+        <CardSection>
+          {isConfirmed === 'False' && (
+            <Button onPress={this.openTwoButtonAlert.bind(this)}>
+              Remove Item
+            </Button>
+          )}
+        </CardSection>
+      </View>
     );
   }
 }

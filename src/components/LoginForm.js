@@ -38,37 +38,37 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card>
+      <View style={{flex: 1}}>
         <Image source={img} style={styles.center} />
-        <CardSection>
-          <Text style={styles.labelStyle}>
-            You are just a few steps to receiving world class service from your
-            supplier
-          </Text>
-        </CardSection>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email@email.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </CardSection>
+        <Text style={styles.labelStyle}>
+          You are just a few steps to receiving world class service from your
+          supplier
+        </Text>
+        <Card>
+          <CardSection>
+            <Input
+              label="Email"
+              placeholder="email@email.com"
+              onChangeText={this.onEmailChange.bind(this)}
+              value={this.props.email}
+            />
+          </CardSection>
 
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
+          <CardSection>
+            <Input
+              secureTextEntry
+              label="Password"
+              placeholder="password"
+              onChangeText={this.onPasswordChange.bind(this)}
+              value={this.props.password}
+            />
+          </CardSection>
 
-        {this.renderError()}
+          {this.renderError()}
 
-        <CardSection>{this.renderButton()}</CardSection>
-      </Card>
+          <CardSection>{this.renderButton()}</CardSection>
+        </Card>
+      </View>
     );
   }
 }

@@ -36,7 +36,8 @@ class PurchasePred extends Component {
     if (this.sales_months) {
       for (var i = 0; i < 12; i++) {
         months.push(this.sales_months[i].Month);
-        sales.push(this.sales_months[i].Sales);
+        const val = parseInt(this.sales_months[i].Sales);
+        sales.push(val);
       }
     }
     console.log('sales', months, sales);

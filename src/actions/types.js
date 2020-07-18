@@ -8,3 +8,4 @@ export const LOGOUT = 'logout';
 export const PURCHASE_UPDATE = 'purchase_update';
 export const PURCHASE_CREATE = 'purchase_create';
 export const PURCHASES_FETCH_SUCCESS = 'purchases_fetch_success';
+export const CONFIRM_ORDER = 'confirm_order';

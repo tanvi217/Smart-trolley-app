@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {loggedOut} from '../actions';
-import {FlatList, View} from 'react-native';
-import {purchasesFetch} from '../actions';
-import {connect} from 'react-redux';
-import ListItem from './ListItem';
-import {CardSection, Button} from './common';
 import firebase from 'firebase';
 import {Actions} from 'react-native-router-flux';
+import {FlatList, View} from 'react-native';
+import {connect} from 'react-redux';
+
+import {loggedOut, purchasesFetch} from '../actions';
+import ListItem from './ListItem';
+import {CardSection, Button} from './common';
 
 class PurchasesList extends Component {
   componentWillMount() {
@@ -35,9 +35,8 @@ class PurchasesList extends Component {
   }
 
   render() {
-    console.log('purchases_ds ', this.currentUser.uid);
     return (
-      <View>
+      <View style={{flex: 1}}>
         <FlatList
           data={this.dataSource}
           renderItem={({item}) => <ListItem purchase={item} />}
@@ -58,10 +57,10 @@ class PurchasesList extends Component {
 }
 
 const mapStateToProps = (state) => {
+  // console.log('state', state);
   const purchases = _.map(state.purchases, (val, uid) => {
     return {...val, uid};
   });
-  // console.log('data_state ', state);
   return {purchases};
 };
 

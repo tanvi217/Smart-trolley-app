@@ -24,7 +24,7 @@ class Predictions extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <CardSection>
           <Text style={{fontSize: 20}}>SALES PREDICTION</Text>
         </CardSection>

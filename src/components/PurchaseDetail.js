@@ -1,20 +1,34 @@
 import React, {Component} from 'react';
 import {View, FlatList, Text} from 'react-native';
-import {CardSection} from './common';
+
+import {CardSection, Button} from './common';
 import ListItemDatewise from './ListItemDatewise';
+import {confirmOrder} from '../actions';
 
 class PurchaseDetail extends Component {
+  state = {
+    isConfirmed: this.props.purchase['isConfirmed'] === 'True',
+  };
+
+  onButtonPress() {
+    this.setState({isConfirmed: false});
+    confirmOrder(this.props.purchase.uid);
+  }
+
   render() {
-    // purchase = this.props.purchase;
     const purchase = this.props.purchase;
     const items_list = Object.keys(purchase);
     const dataSource = [];
     const tot_pr = [];
-    console.log(items_list);
     if (items_list) {
       var i = 0;
-      for (i = 0; i < items_list.length - 2; i++) {
+      for (i = 1; i < items_list.length - 2; i++) {
         const key = items_list[i];
+        purchase[key].key = key;
+        purchase[key].dateOfPurchase = purchase['uid'];
+        purchase[key].isConfirmed = purchase['isConfirmed'];
+        purchase[key].totalprice = purchase['total'].totalprice;
+        purchase[key].totalweight = purchase['total'].totalweight;
         dataSource.push(purchase[key]);
       }
       const key = items_list[i];
@@ -22,20 +36,32 @@ class PurchaseDetail extends Component {
       const {totalprice, totalweight} = tot;
       tot_pr.push(totalprice);
       tot_pr.push(totalweight);
-      console.log(tot_pr);
+      // console.log(tot_pr);
+      // console.log(dataSource);
     }
 
     return (
-      <View>
+      <View style={{flex: 1}}>
         <FlatList
           data={dataSource}
           renderItem={({item}) => <ListItemDatewise purchase={item} />}
         />
         <CardSection>
           <Text style={styles.labelStyle}>
-            {`Total Price: ${tot_pr[0]}\nTotal weight: ${tot_pr[1]}`}
+            {`Total Price: ${tot_pr[1]}\nTotal weight: ${tot_pr[0]}`}
           </Text>
         </CardSection>
+        {this.state.isConfirmed ? (
+          <CardSection>
+            <Button>Confirmed order</Button>
+          </CardSection>
+        ) : (
+          <CardSection>
+            <Button onPress={this.onButtonPress.bind(this)}>
+              Confirm Order
+            </Button>
+          </CardSection>
+        )}
       </View>
     );
   }

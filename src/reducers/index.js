@@ -5,6 +5,5 @@ import PurchaseReducer from './PurchaseReducer';
 
 export default combineReducers({
   auth: AuthReducer,
-  purchaseForm: PurchaseFormReducer,
   purchases: PurchaseReducer,
 });
