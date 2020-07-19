@@ -3,7 +3,6 @@ import {
   PURCHASE_UPDATE,
   PURCHASE_CREATE,
   PURCHASES_FETCH_SUCCESS,
-  CONFIRM_ORDER,
 } from './types';
 import {Actions} from 'react-native-router-flux';
 

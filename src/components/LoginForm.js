@@ -19,7 +19,7 @@ import {
 } from 'native-base';
 
 import {emailChanged, passwordChanged, loginUser} from '../actions';
-import {Card, CardSection, Spinner} from './common';
+import {Spinner} from './common';
 import img from '../../static/logo.jpg';
 
 class LoginForm extends Component {
@@ -125,7 +125,6 @@ const styles = {
   center: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    // width: '50%',
   },
 };
 

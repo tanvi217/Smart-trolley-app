@@ -1,22 +1,14 @@
 import React, {Component} from 'react';
-import {View, Alert} from 'react-native';
-import {Actions} from 'react-native-router-flux';
-import firebase from 'firebase';
-import {connect} from 'react-redux';
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Body,
-  Button,
-} from 'native-base';
+import {Alert} from 'react-native';
+import {Card, CardItem, Text, Body, Button} from 'native-base';
 
 import {deleteItem} from '../actions';
-import {CardSection} from './common';
 class ListItemDatewise extends Component {
+  state = {
+    isConfirmed: this.props.purchase['isConfirmed'] === 'True',
+    isRemoved: false,
+  };
+
   deleteItem() {
     deleteItem(
       this.props.purchase.dateOfPurchase,
@@ -31,7 +23,15 @@ class ListItemDatewise extends Component {
       'Delete Item',
       'Are you sure?',
       [
-        {text: 'Yes', onPress: () => this.deleteItem()},
+        {
+          text: 'Yes',
+          onPress: () => {
+            this.setState({isConfirmed: true});
+            this.setState({isRemoved: true});
+            this.deleteItem();
+            this.forceUpdate();
+          },
+        },
         {
           text: 'No',
           onPress: () => console.log('No item was removed'),
@@ -45,14 +45,7 @@ class ListItemDatewise extends Component {
   };
 
   render() {
-    const {
-      name,
-      price,
-      expdate,
-      mfdate,
-      weight,
-      isConfirmed,
-    } = this.props.purchase;
+    const {name, price, expdate, mfdate, weight} = this.props.purchase;
 
     return (
       <Card>
@@ -60,16 +53,22 @@ class ListItemDatewise extends Component {
           <Text>{`Item - ${name}`}</Text>
         </CardItem>
         <CardItem bordered>
-          <Body>
-            <Text>
-              {`Item Price: ${price}\nItem weight: ${weight}\nManufacturing Date: ${mfdate}\nExpiry Date: ${expdate}`}
-            </Text>
-            {isConfirmed === 'False' && (
-              <Button danger onPress={this.openTwoButtonAlert.bind(this)}>
-                <Text>Remove Item</Text>
-              </Button>
-            )}
-          </Body>
+          {this.state.isRemoved ? (
+            <Body>
+              <Text>Item has been removed.</Text>
+            </Body>
+          ) : (
+            <Body>
+              <Text>
+                {`Item Price: ${price}\nItem weight: ${weight}\nManufacturing Date: ${mfdate}\nExpiry Date: ${expdate}`}
+              </Text>
+              {!this.state.isConfirmed && (
+                <Button danger onPress={this.openTwoButtonAlert.bind(this)}>
+                  <Text>Remove Item</Text>
+                </Button>
+              )}
+            </Body>
+          )}
         </CardItem>
       </Card>
     );

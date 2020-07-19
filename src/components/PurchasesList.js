@@ -14,12 +14,10 @@ import {
   Icon,
   Title,
   Text,
-  Content,
 } from 'native-base';
 
 import {loggedOut, purchasesFetch} from '../actions';
 import ListItem from './ListItem';
-import {CardSection} from './common';
 
 class PurchasesList extends Component {
   componentWillMount() {
@@ -87,7 +85,6 @@ class PurchasesList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log('state', state);
   const purchases = _.map(state.purchases, (val, uid) => {
     return {...val, uid};
   });

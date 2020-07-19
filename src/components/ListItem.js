@@ -1,17 +1,7 @@
 import React, {Component} from 'react';
-import {TouchableWithoutFeedback, View} from 'react-native';
-import {CardSection} from './common/CardSection';
+import {TouchableWithoutFeedback} from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Body,
-  Button,
-} from 'native-base';
+import {Card, CardItem, Text, Body} from 'native-base';
 
 class ListItem extends Component {
   onRowPress() {

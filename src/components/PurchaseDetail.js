@@ -12,16 +12,16 @@ import {
   Text,
   Card,
   CardItem,
-  Content,
 } from 'native-base';
 
-import {CardSection} from './common';
 import ListItemDatewise from './ListItemDatewise';
 import {confirmOrder} from '../actions';
 
 class PurchaseDetail extends Component {
   state = {
-    isConfirmed: this.props.purchase['isConfirmed'] === 'True',
+    isConfirmed: this.props.purchase.isConfirmed === 'True',
+    totalprice: this.props.purchase.total['totalprice'],
+    totalweight: this.props.purchase.total['totalweight'],
   };
 
   onButtonPress() {
@@ -32,7 +32,7 @@ class PurchaseDetail extends Component {
         {
           text: 'Yes',
           onPress: () => {
-            this.setState({isConfirmed: false});
+            this.setState({isConfirmed: true});
             confirmOrder(this.props.purchase.uid);
           },
         },
@@ -49,6 +49,8 @@ class PurchaseDetail extends Component {
   }
 
   render() {
+    console.log(this.state, this.props.purchase);
+
     const purchase = this.props.purchase;
     const items_list = Object.keys(purchase);
     const dataSource = [];
@@ -69,8 +71,6 @@ class PurchaseDetail extends Component {
       const {totalprice, totalweight} = tot;
       tot_pr.push(totalprice);
       tot_pr.push(totalweight);
-      // console.log(tot_pr);
-      // console.log(dataSource);
     }
 
     return (
