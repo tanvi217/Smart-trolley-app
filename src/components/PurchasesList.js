@@ -4,17 +4,7 @@ import firebase from 'firebase';
 import {Actions} from 'react-native-router-flux';
 import {FlatList, View} from 'react-native';
 import {connect} from 'react-redux';
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Text,
-} from 'native-base';
+import {Container, Button, Text} from 'native-base';
 
 import {loggedOut, purchasesFetch} from '../actions';
 import ListItem from './ListItem';
@@ -47,23 +37,6 @@ class PurchasesList extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name="arrow-back" />
-              <Text>Back</Text>
-            </Button>
-          </Left>
-          <Body>
-            <Title>Purchases</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-              <Text>Cancel</Text>
-            </Button>
-          </Right>
-        </Header>
-
         <View style={{flex: 1}}>
           <FlatList
             data={this.dataSource}

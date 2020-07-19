@@ -75,23 +75,6 @@ class PurchaseDetail extends Component {
 
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name="arrow-back" />
-              <Text>Back</Text>
-            </Button>
-          </Left>
-          <Body>
-            <Title>Purchases</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-              <Text>Cancel</Text>
-            </Button>
-          </Right>
-        </Header>
-
         <View style={{flex: 1}}>
           <FlatList
             data={dataSource}

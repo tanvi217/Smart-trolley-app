@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Text} from 'react-native';
 import {CardSection} from './common/CardSection';
-import {Actions} from 'react-native-router-flux';
 
 class ListItemPred extends Component {
   render() {
