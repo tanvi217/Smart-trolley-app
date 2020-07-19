@@ -8,7 +8,7 @@ import PurchasePred from './components/PurchasePred';
 
 const RouterComponent = () => {
   return (
-    <Router navigationBarStyle={{backgroundColor: '#005a9e'}}>
+    <Router navigationBarStyle={{backgroundColor: '#3F51B5'}}>
       <Scene key="root" hideNavBar>
         <Scene key="auth">
           <Scene

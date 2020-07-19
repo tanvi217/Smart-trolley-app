@@ -1,18 +1,6 @@
 import React, {Component} from 'react';
 import {View, FlatList, Alert} from 'react-native';
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-  Title,
-  Text,
-  Card,
-  CardItem,
-} from 'native-base';
+import {Container, Body, Button, Text, Card, CardItem} from 'native-base';
 
 import ListItemDatewise from './ListItemDatewise';
 import {confirmOrder} from '../actions';

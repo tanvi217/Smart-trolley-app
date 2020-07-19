@@ -56,7 +56,7 @@ export default {
   // Button
   buttonFontFamily: platform === PLATFORM.IOS ? 'System' : 'Roboto_medium',
   buttonDisabledBg: '#b5b5b5',
-  buttonPadding: 6,
+  buttonPadding: 10,
   buttonDefaultActiveOpacity: 0.5,
   buttonDefaultFlex: 1,
   buttonDefaultBorderRadius: 2,
@@ -114,8 +114,8 @@ export default {
 
   // Card
   cardDefaultBg: '#fff',
-  cardBorderColor: '#ccc',
-  cardBorderRadius: 2,
+  cardBorderColor: '#a9a9a9',
+  cardBorderRadius: 5,
   cardItemPadding: platform === PLATFORM.IOS ? 10 : 12,
 
   // CheckBox

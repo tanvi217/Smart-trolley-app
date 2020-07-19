@@ -79,10 +79,13 @@ class PurchasePred extends Component {
         <CardSection>
           <Text style={{fontSize: 20}}>SALES PREDICTION</Text>
         </CardSection>
-        <FlatList
-          data={this.predictions}
-          renderItem={({item}) => <ListItemPred pred={item} />}
-        />
+
+        <View style={{flex: 1}}>
+          <FlatList
+            data={this.predictions}
+            renderItem={({item}) => <ListItemPred pred={item} />}
+          />
+        </View>
       </View>
     );
   }

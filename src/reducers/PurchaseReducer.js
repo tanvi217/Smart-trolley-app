@@ -1,4 +1,4 @@
-import {PURCHASES_FETCH_SUCCESS, CONFIRM_ORDER} from '../actions/types';
+import {PURCHASES_FETCH_SUCCESS} from '../actions/types';
 
 const INITIAL_STATE = {
   items: [],

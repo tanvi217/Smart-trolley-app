@@ -10,17 +10,19 @@ class ListItem extends Component {
 
   render() {
     const {uid, total} = this.props.purchase;
-    const {totalprice, totalweight} = total;
+    // const {totalprice, totalweight} = total;
+
+    console.log(total);
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <Card>
           <CardItem header bordered>
-            <Text>{`Purchase Date - ${uid}`}</Text>
+            <Text>{`Purchase Date`}</Text>
           </CardItem>
           <CardItem bordered>
             <Body>
-              <Text>{`Total Price - ${totalprice}`}</Text>
+              <Text>{`${uid}`}</Text>
             </Body>
           </CardItem>
         </Card>

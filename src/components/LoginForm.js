@@ -3,13 +3,7 @@ import {View, Image} from 'react-native';
 import {connect} from 'react-redux';
 import {
   Container,
-  Header,
-  Left,
-  Body,
-  Right,
   Button,
-  Icon,
-  Title,
   Text,
   Form,
   Item,

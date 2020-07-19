@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
-import {CardSection} from './common/CardSection';
+import {Card, CardItem, Text, Body} from 'native-base';
 
 class ListItemPred extends Component {
   render() {
     const {name, prediction} = this.props.pred;
 
     return (
-      <CardSection>
-        <Text style={styles.labelStyle}>
-          {`Item name: ${name}\nNext month sales prediction: ${prediction}`}
-        </Text>
-      </CardSection>
+      <Card>
+        <CardItem header bordered>
+          <Text>{`Item name - ${name}`}</Text>
+        </CardItem>
+        <CardItem bordered>
+          <Body>
+            <Text>{`Next month sales prediction - ${prediction}`}</Text>
+          </Body>
+        </CardItem>
+      </Card>
     );
   }
 }
