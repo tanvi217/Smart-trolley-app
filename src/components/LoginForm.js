@@ -1,8 +1,25 @@
 import React, {Component} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import {connect} from 'react-redux';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+  Title,
+  Text,
+  Form,
+  Item,
+  Label,
+  Input,
+  Content,
+} from 'native-base';
+
 import {emailChanged, passwordChanged, loginUser} from '../actions';
-import {Card, CardSection, Input, Button, Spinner} from './common';
+import {Card, CardSection, Spinner} from './common';
 import img from '../../static/logo.jpg';
 
 class LoginForm extends Component {
@@ -33,42 +50,63 @@ class LoginForm extends Component {
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
-    return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>;
+    return (
+      <Button block onPress={this.onButtonPress.bind(this)}>
+        <Text>Login</Text>
+      </Button>
+    );
   }
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <Image source={img} style={styles.center} />
-        <Text style={styles.labelStyle}>
-          You are just a few steps to receiving world class service from your
-          supplier
-        </Text>
-        <Card>
-          <CardSection>
-            <Input
-              label="Email"
-              placeholder="email@email.com"
-              onChangeText={this.onEmailChange.bind(this)}
-              value={this.props.email}
-            />
-          </CardSection>
+      <Container style={{flex: 1}}>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name="arrow-back" />
+              <Text>Back</Text>
+            </Button>
+          </Left>
+          <Body>
+            <Title>Welcome back!</Title>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Text>Cancel</Text>
+            </Button>
+          </Right>
+        </Header>
 
-          <CardSection>
-            <Input
-              secureTextEntry
-              label="Password"
-              placeholder="password"
-              onChangeText={this.onPasswordChange.bind(this)}
-              value={this.props.password}
-            />
-          </CardSection>
+        <Content>
+          <Form>
+            <Item floatingLabel>
+              <Label>E-mail</Label>
+              <Input
+                placeholder="email@email.com"
+                onChangeText={this.onEmailChange.bind(this)}
+                value={this.props.email}
+                inlineLabel="true"
+              />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input
+                secureTextEntry
+                placeholder="password"
+                onChangeText={this.onPasswordChange.bind(this)}
+                value={this.props.password}
+              />
+            </Item>
+            {this.renderError()}
 
-          {this.renderError()}
+            <Image source={img} style={styles.center} />
 
-          <CardSection>{this.renderButton()}</CardSection>
-        </Card>
-      </View>
+            <Button bordered block onPress={this.onButtonPress.bind(this)}>
+              <Text>Login</Text>
+            </Button>
+          </Form>
+        </Content>
+      </Container>
     );
   }
 }

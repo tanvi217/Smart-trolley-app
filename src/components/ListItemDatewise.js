@@ -1,23 +1,32 @@
 import React, {Component} from 'react';
-import {Text, View, Alert} from 'react-native';
+import {View, Alert} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
+import {
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Text,
+  Body,
+  Button,
+} from 'native-base';
 
 import {deleteItem} from '../actions';
-import {CardSection, Button} from './common';
+import {CardSection} from './common';
 class ListItemDatewise extends Component {
   deleteItem() {
     deleteItem(
       this.props.purchase.dateOfPurchase,
       this.props.purchase.key,
-      this.props.purchase.totalweight - this.props.purchase.weight,
       this.props.purchase.totalprice - this.props.purchase.price,
+      this.props.purchase.totalweight - this.props.purchase.weight,
     );
   }
 
   openTwoButtonAlert = () => {
-    console.log(this.props);
     Alert.alert(
       'Delete Item',
       'Are you sure?',
@@ -46,20 +55,23 @@ class ListItemDatewise extends Component {
     } = this.props.purchase;
 
     return (
-      <View>
-        <CardSection>
-          <Text style={styles.labelStyle}>
-            {`Item name: ${name}\nItem Price: ${price}\nItem weight: ${weight}\nManufacturing Date: ${mfdate}\nExpiry Date: ${expdate}`}
-          </Text>
-        </CardSection>
-        <CardSection>
-          {isConfirmed === 'False' && (
-            <Button onPress={this.openTwoButtonAlert.bind(this)}>
-              Remove Item
-            </Button>
-          )}
-        </CardSection>
-      </View>
+      <Card>
+        <CardItem header bordered>
+          <Text>{`Item - ${name}`}</Text>
+        </CardItem>
+        <CardItem bordered>
+          <Body>
+            <Text>
+              {`Item Price: ${price}\nItem weight: ${weight}\nManufacturing Date: ${mfdate}\nExpiry Date: ${expdate}`}
+            </Text>
+            {isConfirmed === 'False' && (
+              <Button danger onPress={this.openTwoButtonAlert.bind(this)}>
+                <Text>Remove Item</Text>
+              </Button>
+            )}
+          </Body>
+        </CardItem>
+      </Card>
     );
   }
 }

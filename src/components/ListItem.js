@@ -1,25 +1,39 @@
 import React, {Component} from 'react';
-import {Text, TouchableWithoutFeedback, View} from 'react-native';
+import {TouchableWithoutFeedback, View} from 'react-native';
 import {CardSection} from './common/CardSection';
 import {Actions} from 'react-native-router-flux';
+import {
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Text,
+  Body,
+  Button,
+} from 'native-base';
 
 class ListItem extends Component {
   onRowPress() {
-    // console.log('ind item', this.props.purchase);
     Actions.purchaseDetail({purchase: this.props.purchase});
   }
 
   render() {
-    const {uid} = this.props.purchase;
+    const {uid, total} = this.props.purchase;
+    const {totalprice, totalweight} = total;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
-        <View>
-          <CardSection>
-            <Text style={styles.titleStyle}>Purchase Date: </Text>
-            <Text style={styles.titleStyle}>{uid}</Text>
-          </CardSection>
-        </View>
+        <Card>
+          <CardItem header bordered>
+            <Text>{`Purchase Date - ${uid}`}</Text>
+          </CardItem>
+          <CardItem bordered>
+            <Body>
+              <Text>{`Total Price - ${totalprice}`}</Text>
+            </Body>
+          </CardItem>
+        </Card>
       </TouchableWithoutFeedback>
     );
   }

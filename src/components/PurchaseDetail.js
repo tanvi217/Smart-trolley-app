@@ -1,7 +1,21 @@
 import React, {Component} from 'react';
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList, Alert} from 'react-native';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+  Title,
+  Text,
+  Card,
+  CardItem,
+  Content,
+} from 'native-base';
 
-import {CardSection, Button} from './common';
+import {CardSection} from './common';
 import ListItemDatewise from './ListItemDatewise';
 import {confirmOrder} from '../actions';
 
@@ -11,8 +25,27 @@ class PurchaseDetail extends Component {
   };
 
   onButtonPress() {
-    this.setState({isConfirmed: false});
-    confirmOrder(this.props.purchase.uid);
+    Alert.alert(
+      'Confirm order',
+      'Are you sure?',
+      [
+        {
+          text: 'Yes',
+          onPress: () => {
+            this.setState({isConfirmed: false});
+            confirmOrder(this.props.purchase.uid);
+          },
+        },
+        {
+          text: 'No',
+          onPress: () => console.log("Order wasn't confirmed"),
+          style: 'cancel',
+        },
+      ],
+      {
+        cancelable: true,
+      },
+    );
   }
 
   render() {
@@ -41,28 +74,52 @@ class PurchaseDetail extends Component {
     }
 
     return (
-      <View style={{flex: 1}}>
-        <FlatList
-          data={dataSource}
-          renderItem={({item}) => <ListItemDatewise purchase={item} />}
-        />
-        <CardSection>
-          <Text style={styles.labelStyle}>
-            {`Total Price: ${tot_pr[1]}\nTotal weight: ${tot_pr[0]}`}
-          </Text>
-        </CardSection>
-        {this.state.isConfirmed ? (
-          <CardSection>
-            <Button>Confirmed order</Button>
-          </CardSection>
-        ) : (
-          <CardSection>
-            <Button onPress={this.onButtonPress.bind(this)}>
-              Confirm Order
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name="arrow-back" />
+              <Text>Back</Text>
             </Button>
-          </CardSection>
-        )}
-      </View>
+          </Left>
+          <Body>
+            <Title>Purchases</Title>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Text>Cancel</Text>
+            </Button>
+          </Right>
+        </Header>
+
+        <View style={{flex: 1}}>
+          <FlatList
+            data={dataSource}
+            renderItem={({item}) => <ListItemDatewise purchase={item} />}
+          />
+
+          <Card>
+            <CardItem header>
+              <Text>Total</Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>{`Price - ${tot_pr[0]}\nWeight - ${tot_pr[1]}`}</Text>
+              </Body>
+            </CardItem>
+          </Card>
+
+          {this.state.isConfirmed ? (
+            <Button block success>
+              <Text>Order Confirmed</Text>
+            </Button>
+          ) : (
+            <Button block onPress={this.onButtonPress.bind(this)}>
+              <Text style={{alignItems: 'center'}}>Confirm Order</Text>
+            </Button>
+          )}
+        </View>
+      </Container>
     );
   }
 }
