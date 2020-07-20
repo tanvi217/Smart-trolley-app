@@ -59,7 +59,13 @@ class MainScreen extends Component {
               <Body>
                 <Image
                   source={purchaseHistory}
-                  style={{height: 100, width: 100, flex: 1}}
+                  style={{
+                    height: 100,
+                    width: 100,
+                    flex: 1,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                  }}
                 />
               </Body>
             </CardItem>
@@ -89,7 +95,13 @@ class MainScreen extends Component {
                 <Body>
                   <Image
                     source={prediction}
-                    style={{height: 100, width: 100, flex: 1}}
+                    style={{
+                      height: 100,
+                      width: 100,
+                      flex: 1,
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                    }}
                   />
                 </Body>
               </CardItem>
@@ -119,7 +131,13 @@ class MainScreen extends Component {
               <Body>
                 <Image
                   source={discount}
-                  style={{height: 100, width: 100, flex: 1}}
+                  style={{
+                    height: 100,
+                    width: 100,
+                    flex: 1,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                  }}
                 />
               </Body>
             </CardItem>

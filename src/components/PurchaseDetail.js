@@ -10,6 +10,7 @@ class PurchaseDetail extends Component {
     isConfirmed: this.props.purchase.isConfirmed === 'True',
     totalprice: this.props.purchase.total['totalprice'],
     totalweight: this.props.purchase.total['totalweight'],
+    weightSensor: this.props.purchase.weightSensor,
   };
 
   onButtonPress() {
@@ -37,7 +38,8 @@ class PurchaseDetail extends Component {
   }
 
   render() {
-    console.log(this.state, this.props.purchase);
+    // console.log(this.state, this.props.purchase);
+    console.log(this.state.weightSensor === this.state.totalweight);
 
     const purchase = this.props.purchase;
     const items_list = Object.keys(purchase);
@@ -45,7 +47,7 @@ class PurchaseDetail extends Component {
     const tot_pr = [];
     if (items_list) {
       var i = 0;
-      for (i = 1; i < items_list.length - 2; i++) {
+      for (i = 1; i < items_list.length - 3; i++) {
         const key = items_list[i];
         purchase[key].key = key;
         purchase[key].dateOfPurchase = purchase['uid'];
@@ -80,12 +82,25 @@ class PurchaseDetail extends Component {
             </CardItem>
           </Card>
 
+          {!(this.state.weightSensor === this.state.totalweight) && (
+            <Card>
+              <CardItem>
+                <Body>
+                  <Text>Please check your cart</Text>
+                </Body>
+              </CardItem>
+            </Card>
+          )}
+
           {this.state.isConfirmed ? (
             <Button block success>
               <Text>Order Confirmed</Text>
             </Button>
           ) : (
-            <Button block onPress={this.onButtonPress.bind(this)}>
+            <Button
+              block
+              onPress={this.onButtonPress.bind(this)}
+              disabled={this.state.weightSensor !== this.state.totalweight}>
               <Text style={{alignItems: 'center'}}>Confirm Order</Text>
             </Button>
           )}

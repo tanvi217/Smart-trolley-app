@@ -33,7 +33,13 @@ class Discounts extends Component {
               <Body>
                 <Image
                   source={coupon}
-                  style={{height: 100, width: 100, flex: 1}}
+                  style={{
+                    height: 100,
+                    width: 100,
+                    flex: 1,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                  }}
                 />
               </Body>
             </CardItem>
@@ -59,7 +65,13 @@ class Discounts extends Component {
               <Body>
                 <Image
                   source={offer}
-                  style={{height: 100, width: 100, flex: 1}}
+                  style={{
+                    height: 100,
+                    width: 100,
+                    flex: 1,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                  }}
                 />
               </Body>
             </CardItem>

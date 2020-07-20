@@ -31,7 +31,6 @@ export const loggedOut = () => {
       Actions.auth();
     });
 
-  console.log('here');
   // return (dispatch) => {
   //   firebase
   //     .auth()
