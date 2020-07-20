@@ -24,15 +24,23 @@ export const passwordChanged = (text) => {
 };
 
 export const loggedOut = () => {
-  return (dispatch) => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        Actions.auth();
-        dispatch({type: LOGOUT});
-      });
-  };
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      Actions.auth();
+    });
+
+  console.log('here');
+  // return (dispatch) => {
+  //   firebase
+  //     .auth()
+  //     .signOut()
+  //     .then(() => {
+  //       Actions.auth();
+  //       dispatch({type: LOGOUT});
+  //     });
+  // };
 };
 
 export const loginUser = ({email, password}) => {

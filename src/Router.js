@@ -5,6 +5,8 @@ import LoginForm from './components/LoginForm';
 import PurchasesList from './components/PurchasesList';
 import PurchaseDetail from './components/PurchaseDetail';
 import PurchasePred from './components/PurchasePred';
+import MainScreen from './components/MainScreen';
+import Discounts from './components/Discounts';
 
 const RouterComponent = () => {
   return (
@@ -18,6 +20,11 @@ const RouterComponent = () => {
             initial></Scene>
         </Scene>
         <Scene key="main">
+          <Scene
+            key="mainScreen"
+            component={MainScreen}
+            title="Smart Trolley"
+          />
           <Scene
             key="purchasesList"
             component={PurchasesList}
@@ -33,6 +40,7 @@ const RouterComponent = () => {
             component={PurchasePred}
             title="Sales Predictions"
           />
+          <Scene key="offers" component={Discounts} title="Offers" />
         </Scene>
       </Scene>
     </Router>

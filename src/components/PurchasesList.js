@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import {Actions} from 'react-native-router-flux';
 import {FlatList, View} from 'react-native';
 import {connect} from 'react-redux';
-import {Container, Button, Text} from 'native-base';
+import {Container} from 'native-base';
 
 import {loggedOut, purchasesFetch} from '../actions';
 import ListItem from './ListItem';
@@ -26,10 +26,6 @@ class PurchasesList extends Component {
     this.dataSource = purchases;
   }
 
-  onButtonPress() {
-    this.props.loggedOut();
-  }
-
   onButtonPressPred() {
     Actions.purchasePred();
   }
@@ -42,14 +38,6 @@ class PurchasesList extends Component {
             data={this.dataSource}
             renderItem={({item}) => <ListItem purchase={item} />}
           />
-          <Button onPress={this.onButtonPress.bind(this)}>
-            <Text>Logout</Text>
-          </Button>
-          {this.currentUser.uid === 'tv7NYCCLWahX4ojmjwXhk8ceIKI2' && (
-            <Button onPress={this.onButtonPressPred.bind(this)}>
-              <Text>PREDICTIONS</Text>
-            </Button>
-          )}
         </View>
       </Container>
     );
