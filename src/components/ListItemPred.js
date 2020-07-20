@@ -5,6 +5,8 @@ class ListItemPred extends Component {
   render() {
     const {name, prediction} = this.props.pred;
 
+    console.log(name, prediction);
+
     return (
       <Card>
         <CardItem header bordered>

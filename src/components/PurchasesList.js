@@ -42,11 +42,10 @@ class PurchasesList extends Component {
             data={this.dataSource}
             renderItem={({item}) => <ListItem purchase={item} />}
           />
-
           <Button onPress={this.onButtonPress.bind(this)}>
             <Text>Logout</Text>
           </Button>
-          {this.currentUser.uid === 'WqcFBidhthQdWTSXzMVVyEVPu6D2' && (
+          {this.currentUser.uid === 'tv7NYCCLWahX4ojmjwXhk8ceIKI2' && (
             <Button onPress={this.onButtonPressPred.bind(this)}>
               <Text>PREDICTIONS</Text>
             </Button>
